@@ -1,17 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header v-bind:login="tmp" v-bind:username="username" v-bind:portrait_url="url"
+            v-on:searchInput="searchInput" v-on:loginRegister="loginRegister">
+    "loginRegister"></Header>
+    <div>
+      <button v-on:click="tmp=true">login</button>
+      {{ tmp }}
+    </div>
+    <div>
+      <p>{{ search_input }}</p>
+      <p>{{ login_register }}</p>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Header from './components/Header.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      username: "Chen Yuqi",
+      login_register: false,
+      search_input: "Search What?",
+      tmp: false,
+      url: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3251219681,3891116775&fm=26&gp=0.jpg"
+    }
+  },
   components: {
-    HelloWorld
+    Header
+  },
+  methods: {
+    searchInput: function (input) {
+      this.search_input = input
+    },
+    loginRegister: function (input) {
+      this.login_register = input
+    }
   }
 }
 </script>
@@ -19,10 +46,9 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+body{
+  padding: 0;
+  margin: 0;
 }
 </style>
